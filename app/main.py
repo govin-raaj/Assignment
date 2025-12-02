@@ -24,7 +24,7 @@ def load_pdf_pipeline():
 
 if "proc" not in st.session_state:
     with st.spinner("Processing PDF and building multimodal index (runs once)..."):
-        proc, vector_store, docs = load_pdf_pipeline(file_path)
+        proc, vector_store, docs = load_pdf_pipeline()
         st.session_state["proc"] = proc
         st.session_state["vector_store"] = vector_store
         st.session_state["docs"] = docs
@@ -33,11 +33,11 @@ else:
     vector_store = st.session_state["vector_store"]
     docs = st.session_state["docs"]
 
-    
 
-with st.spinner("Processing PDF and building multimodal index..."):
-    proc, vector_store, docs = load_pdf_pipeline()
-st.success(f"Loaded {len(docs)} chunks/images from PDF")
+
+# with st.spinner("Processing PDF and building multimodal index..."):
+#     proc, vector_store, docs = load_pdf_pipeline()
+# st.success(f"Loaded {len(docs)} chunks/images from PDF")
 
 
 if 'message_history' not in st.session_state:
