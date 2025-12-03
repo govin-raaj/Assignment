@@ -23,7 +23,7 @@ def load_pdf_pipeline():
     return proc, vs, docs
 
 if "proc" not in st.session_state:
-    with st.spinner("Processing PDF and building multimodal index (runs once)..."):
+    with st.spinner("Processing PDF and building multimodal index ..."):
         proc, vector_store, docs = load_pdf_pipeline()
         st.session_state["proc"] = proc
         st.session_state["vector_store"] = vector_store
@@ -33,12 +33,7 @@ else:
     vector_store = st.session_state["vector_store"]
     docs = st.session_state["docs"]
 
-
-
-# with st.spinner("Processing PDF and building multimodal index..."):
-#     proc, vector_store, docs = load_pdf_pipeline()
-# st.success(f"Loaded {len(docs)} chunks/images from PDF")
-
+st.title("MultiModel RAG")
 
 if 'message_history' not in st.session_state:
     st.session_state['message_history'] = []
@@ -59,6 +54,17 @@ if user_input:
         context_docs = proc.retrieve_multimodal(user_input, k=5)
         message = proc.create_multimodal_message(user_input, context_docs)
 
+        with st.sidebar:
+            st.subheader("Retrieved Documents")
+            if context_docs:
+                for i, doc in enumerate(context_docs):
+                    st.markdown(f"### Chunk {i+1}")
+                    st.write(doc.page_content)
+                    st.divider()
+            else:
+                st.write("No documents retrieved.")
+
+
         response = llm.invoke([message])
     
     ai_message = response.content
@@ -66,3 +72,8 @@ if user_input:
     st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
     with st.chat_message('assistant'):
         st.text(ai_message)
+
+
+"what are the POLICIES TO PURSUE TRANSFORMATION AMID GLOBAL HEADWINDS"
+"what does Qatar: Summary of Central Government Finance, 2020–29 suggest"
+"give the  Overview of Qatar’s Third National Development Strategy"

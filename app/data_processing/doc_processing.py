@@ -1,12 +1,9 @@
-import fitz  # PyMuPDF
+import fitz 
 from langchain_core.documents import Document
 from transformers import CLIPProcessor, CLIPModel
 from PIL import Image
 import torch
-import numpy as np
-
 from langchain_core.messages import HumanMessage
-import os
 import base64
 import io
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -24,8 +21,6 @@ class Processdoc:
         self.image_data_store = {}
 
 
-
-    
     def embed_image(self,image_data):
         """Embed image using CLIP"""
         if isinstance(image_data, str):
@@ -80,15 +75,12 @@ class Processdoc:
                 
                         pil_image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
                         
-                    
                         image_id = f"page_{i}_img_{img_index}"
-                        
                         
                         buffered = io.BytesIO()
                         pil_image.save(buffered, format="PNG")
                         img_base64 = base64.b64encode(buffered.getvalue()).decode()
                         self.image_data_store[image_id] = img_base64
-                        
                         
                         embedding = self.embed_image(pil_image)
                         
