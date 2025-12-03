@@ -73,7 +73,8 @@ if user_input:
     with st.chat_message('assistant'):
         st.text(ai_message)
 
-
-"what are the POLICIES TO PURSUE TRANSFORMATION AMID GLOBAL HEADWINDS"
-"what does Qatar: Summary of Central Government Finance, 2020–29 suggest"
-"give the  Overview of Qatar’s Third National Development Strategy"
+# "What are Qatar's GDP growth drivers for 2024-2025?"
+# "what does Table 1. Qatar: Selected Macroeconomic Indicators, 2021-25 tell?"
+# "what are the POLICIES TO PURSUE TRANSFORMATION AMID GLOBAL HEADWINDS"
+# "what does Qatar: Summary of Central Government Finance, 2020–29 suggest"
+# "give the  Overview of Qatar’s Third National Development Strategy"

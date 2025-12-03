@@ -17,7 +17,7 @@ class Processdoc:
         self.vector_store = vector_store
         self.clip_model=CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
         self.clip_processor=CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
-        self.splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        self.splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
         self.image_data_store = {}
 
 

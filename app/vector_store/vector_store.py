@@ -22,10 +22,7 @@ class VectorStore:
             self.vector_store = None
     
     def add_embeddings(self, documents, embeddings):
-        """
-        Add documents + precomputed embeddings (numpy arrays).
-        embeddings: list/array of shape (N, D)
-        """
+ 
         embeddings = np.array(embeddings).astype("float32")
 
         if self.vector_store is None:
@@ -51,10 +48,6 @@ class VectorStore:
 
 
     def similarity_search_by_vector(self, embedding, k=4):
-        """
-        Accepts a numpy vector (1D) or list and performs similarity search.
-        Delegates to underlying FAISS wrapper if available.
-        """
         if self.vector_store is None:
             return []
 
